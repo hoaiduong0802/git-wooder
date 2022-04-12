@@ -517,8 +517,8 @@
 //   }
 // }
 .about-us {
-  
   @include bg;
+  background-attachment: fixed;
   //   color: black;
   height: 640px;
   &::after {
