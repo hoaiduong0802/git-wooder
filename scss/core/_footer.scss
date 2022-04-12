@@ -1,0 +1,95 @@
+footer {
+  background: $black-cl;
+  height: 60px;
+  position: relative;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    @include mid(false);
+    .left,
+    .mid,
+    .right {
+      @include text(12px, Proxima Rg, 22px, #b0b0b0, null);
+    }
+    .mid {
+      a {
+        display: flex;
+        h2 {
+          display: none;
+        }
+        img {
+          width: 150px;
+        }
+      }
+    }
+    .right {
+      text-transform: uppercase;
+      @include keyframes(topdown_footer) {
+        0% {
+          @include transform(translateY(10px) rotate(90deg));
+          opacity: 0;
+          @include transition(0.3s);
+        }
+        100% {
+          @include transform(translateY(0px) rotate(90deg));
+          opacity: 1;
+          @include transition(0.3s);
+        }
+      }
+      a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: #b0b0b0;
+        img{
+          padding-right: 10px;
+          @include transform(rotate(90deg));
+          @include animation(topdown_footer 1s ease forwards infinite)
+        }
+      }
+    }
+  }
+  .container-fluid{
+    opacity: 0;
+    visibility: hidden;
+    @include transition($t);
+    a{
+      img{
+        width: 55px;
+        position: fixed;
+        background: $white-cl;
+        border-radius: 50%;
+        bottom: 60px;
+        right: 30px;
+        mix-blend-mode: difference;
+        &:hover{
+          background: $yellow-cl;
+          border: 2px solid $yellow-cl;
+          @include transition($t);
+        }
+      }
+    }
+    &.button__visible{
+      opacity: 1;
+      visibility: visible;
+      @include transition($t);
+    }
+  }
+  @include xs {
+    .container {
+      padding: 10px 0;
+      height: 100px;
+      max-width: 100%;
+      background: $black-cl;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      //   .mid {
+      //     padding: 10px 0px;
+      //   }
+    }
+  }
+}

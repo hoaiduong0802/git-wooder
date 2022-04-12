@@ -1,0 +1,99 @@
+@-ms-viewport {
+  width: device-width;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%; // => 10px = 1rem
+}
+body {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: auto;
+  --pd-section: 90px;
+  main {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    section {
+      &.pdsect {
+        padding: var(--pd-section) 0;
+      }
+    }
+  }
+  @include text(
+    var(--body16-fs),
+    ir,
+    var(--body16-lh),
+    $black-cl,
+    none
+  ); // tuỳ chỉnh
+  background: $white-cl;
+  position: relative;
+  .container-fluid {
+    width: 100%;
+    padding-right: var(--gap);
+    padding-left: var(--gap);
+    margin-right: auto;
+    margin-left: auto;
+    @include xs {
+      padding-right: calc(var(--gap) / 2);
+      padding-left: calc(var(--gap) / 2);
+    }
+  }
+  .container {
+    width: 100%;
+    padding-right: calc(var(--gap) / 2);
+    padding-left: calc(var(--gap) / 2);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: $xxs-min) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  @media (min-width: $xs-min) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  @media (min-width: $sm-min) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  @media (min-width: $md-min) {
+    .container {
+      max-width: $container-width;
+    }
+  }
+
+  .mainwrapper {
+    width: 100%;
+    margin: auto;
+    @include visible;
+  }
+  @include lg {
+    // CSS responsive large desktop
+  }
+  @include md {
+    // CSS responsive desktop
+  }
+  @include sm {
+    // CSS responsive tablet
+  }
+  @include xs {
+    // CSS responsive mobile
+  }
+  @include xxs {
+    // CSS responsive small mobile
+  }
+}

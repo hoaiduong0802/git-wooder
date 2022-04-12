@@ -1,0 +1,244 @@
+header {
+  width: 100%;
+  height: var(--height-header);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.6365896700477065) 0%,
+    rgba(149, 70, 70, 0) 70%
+  );
+  nav {
+    display: none;
+  }
+  @include text(15px, Proxima B, 26.25px, $white-cl, uppercase);
+  .container-fluid {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+      img {
+        width: 177px;
+      }
+      .hidden {
+        display: none;
+      }
+    }
+    .menu {
+      height: 100%;
+      @include mid(true);
+      ul {
+        display: flex;
+        li {
+          a {
+            position: relative;
+            text-decoration: none;
+            color: $grey-cl;
+            margin: 20px 10px;
+            padding: 30px 0px;
+            @include transition($t);
+            &.active{
+              color: $white-cl;
+              @include transition($t);
+              // bottom: 30px;
+            }
+            &::after {
+              position: absolute;
+              content: "";
+              width: 100%;
+              height: 2px;
+              background: $white-cl;
+              left: 0;
+              bottom: 30px;
+              @include transform(scaleX(0));
+              @include transform-origin(right center);
+              @include transition(0.3s);
+            }
+            &:hover {
+              // @include transition($t);
+              color: $white-cl;
+              &::after {
+                @include transform(scaleX(1));
+                @include transform-origin(left center);
+                @include transition(0.3s);
+              }
+            }
+          }
+        }
+      }
+    }
+    .lang {
+      @include mid(true);
+      cursor: pointer;
+      position: relative;
+      &__current {
+        @include mid(true);
+        img {
+          width: 10px;
+          margin-left: 5px;
+        }
+      }
+      &__list {
+        position: absolute;
+        display: none;
+        top: 25px;
+        left: 0;
+        ul {
+          li {
+            border: 2px solid white;
+            padding-right: 10px;
+            padding-left: 10px;
+            // mix-blend-mode: difference;
+            background-color: rgba(191, 186, 161, 0.3);
+            @include transition($t);
+            &:nth-child(2) {
+              border-top: 1px;
+              border-bottom: 1px;
+            }
+            &:hover {
+              @include bghover($yellow-cl, 0.3s);
+            }
+          }
+        }
+        &.active{
+          display: block;
+        }
+      }
+      // &:hover .lang__list {
+      //   display: block;
+      // }
+    }
+    .btnmenu {
+      display: none;
+      width: 40px;
+      height: 22px;
+      position: relative;
+      cursor: pointer;
+      margin-left: 20px;
+      z-index: 30;
+      span {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: $yellow-cl;
+        top: 50%;
+        @include transform(translateY(-50%));
+        // @include transition(transform 0.3s);
+      }
+      &:before,
+      &:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: $yellow-cl;
+        @include transform(rotate(0deg) translateY(0px));
+        @include transition(transform 0.3s);
+      }
+      &::after {
+        position: absolute;
+        bottom: 0;
+      }
+      &.active{
+        &::before{
+          transform: rotate(45deg) translate(7px, 8px); 
+          @include transition(transform 0.3s)
+        }
+        span{
+          opacity: 0;
+          @include transition(transform 0.3s)
+
+        }
+        &::after{
+          transform: rotate(-45deg) translate(5px, -8px);
+          @include transition(transform 0.3s)
+
+        }
+      }
+    }
+  }
+  @include sm {
+    .nav {
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      top: 0;
+      left: 0;
+      position: fixed;
+      @include transform(initial);
+      z-index: 20;
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      // @include transition(opacity 0.3s);
+      ul {
+        text-align: center;
+        flex-direction: column;
+        @include mid(false);
+        li {
+          margin: 50px auto;
+          a {
+            color: $white-cl;
+            text-align: center;
+            text-decoration: none;
+          }
+        }
+      }
+      &.active{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    .container-fluid {
+      .menu {
+        display: none;
+      }
+      .btnmenu {
+        display: block;
+      }
+    }
+  }
+  @include xs {
+    --height-header: 60px;
+    .nav {
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      top: 0;
+      left: 0;
+      position: fixed;
+      @include transform(initial);
+      z-index: 20;
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      // @include transition(opacity 0.3s);
+      ul {
+        text-align: center;
+        flex-direction: column;
+        @include mid(false);
+        li {
+          margin: 50px auto;
+          a {
+            color: $white-cl;
+            text-align: center;
+            text-decoration: none;
+          }
+        }
+      }
+      &.active{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  &.bgheader{
+    height: 60px;
+    background: #000;
+    @include transition($t);
+  }
+}
